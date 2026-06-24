@@ -1,28 +1,18 @@
-// ====================== CONFIG ======================
 const config = {
     type: Phaser.AUTO,
     width: 1280,
     height: 720,
     backgroundColor: '#1a120b',
-    physics: { 
-        default: 'arcade', 
-        arcade: { debug: false } 
-    },
+    physics: { default: 'arcade', arcade: { debug: false } },
     scene: [MenuScene, GuildHallScene],
-    scale: { 
-        mode: Phaser.Scale.FIT, 
-        autoCenter: Phaser.Scale.CENTER_BOTH 
-    }
+    scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH }
 };
 
-// ====================== SCENES ======================
 class MenuScene extends Phaser.Scene {
     constructor() { super('MenuScene'); }
-    
     preload() {
         this.load.image('emblem', 'https://ibb.co/rKhVk4dd');
     }
-    
     create() {
         this.cameras.main.setBackgroundColor('#1a120b');
         this.add.image(640, 360, 'emblem').setScale(0.5).setAlpha(0.2);
@@ -35,23 +25,18 @@ class MenuScene extends Phaser.Scene {
         }).setOrigin(0.5).setInteractive({ useHandCursor: true });
         
         startBtn.on('pointerdown', () => this.scene.start('GuildHallScene'));
-        startBtn.on('pointerover', () => startBtn.setStyle({ fill: '#ffd700' }));
-        startBtn.on('pointerout', () => startBtn.setStyle({ fill: '#fff' }));
     }
 }
 
 class GuildHallScene extends Phaser.Scene {
     constructor() { super('GuildHallScene'); }
-    
     preload() {
         this.load.image('knight_portrait', 'https://ibb.co/yBNPkSt2');
         this.load.image('knight_sprite', 'https://ibb.co/nNMSgTqb');
         this.load.image('emblem', 'https://ibb.co/rKhVk4dd');
     }
-    
     create() {
         this.cameras.main.setBackgroundColor('#2c1f14');
-        
         this.add.text(640, 60, 'GUILD HALL', { fontSize: '42px', fill: '#ffd700' }).setOrigin(0.5);
         this.add.image(200, 120, 'emblem').setScale(0.7);
         this.add.image(300, 380, 'knight_portrait').setScale(0.65);
@@ -64,7 +49,6 @@ class GuildHallScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keys = this.input.keyboard.addKeys('W,A,S,D');
     }
-    
     update() {
         if (!this.knight) return;
         const speed = 5;
@@ -78,5 +62,4 @@ class GuildHallScene extends Phaser.Scene {
     }
 }
 
-// ====================== GAME START ======================
 const game = new Phaser.Game(config);
