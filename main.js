@@ -31,9 +31,14 @@ class MenuScene extends Phaser.Scene {
 class GuildHallScene extends Phaser.Scene {
     constructor() { super('GuildHallScene'); }
     preload() {
+        // Error handling bilan yuklash
         this.load.image('knight_portrait', 'https://i.ibb.co/dJfMpgFZ/9ku-P4.jpg');
         this.load.image('knight_sprite', 'https://i.ibb.co/pBjp0g6x/Qa-Cc-M.jpg');
         this.load.image('emblem', 'https://i.ibb.co/NgqMxZTT/CUit-Q.jpg');
+        
+        this.load.on('loaderror', (file) => {
+            console.error('Rasm yuklanmadi:', file.key, file.url);
+        });
     }
     create() {
         this.cameras.main.setBackgroundColor('#2c1f14');
@@ -42,7 +47,7 @@ class GuildHallScene extends Phaser.Scene {
         this.add.image(200, 120, 'emblem').setScale(0.7);
         this.add.image(300, 380, 'knight_portrait').setScale(0.65);
         
-        this.knight = this.add.image(700, 420, 'knight_sprite').setScale(2.8);
+        this.knight = this.add.image(700, 420, 'knight_sprite').setScale(2.0); // kichraytirdim, chunki sprite katta
         
         this.add.text(640, 200, 'Sizning Qahramoningiz: Knight', { fontSize: '28px', fill: '#fff' }).setOrigin(0.5);
         this.add.text(640, 620, 'WASD / Strelkalar bilan harakatlaning', { fontSize: '20px', fill: '#aaa' }).setOrigin(0.5);
@@ -59,4 +64,8 @@ class GuildHallScene extends Phaser.Scene {
         if (this.cursors.down.isDown || this.keys.S.isDown) this.knight.y += speed;
         
         this.knight.x = Phaser.Math.Clamp(this.knight.x, 100, 1180);
-        this.knight.y = Phaser.Math.Clamp(this.knight.y, 180, 620
+        this.knight.y = Phaser.Math.Clamp(this.knight.y, 180, 620);
+    }
+}
+
+const game = new Phaser.Game(config);
