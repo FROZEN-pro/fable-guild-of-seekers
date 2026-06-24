@@ -11,7 +11,7 @@ const config = {
 class MenuScene extends Phaser.Scene {
     constructor() { super('MenuScene'); }
     preload() {
-        this.load.image('emblem', 'https://ibb.co/rKhVk4dd');
+        this.load.image('emblem', 'https://i.ibb.co/NgqMxZTT/CUit-Q.jpg');
     }
     create() {
         this.cameras.main.setBackgroundColor('#1a120b');
@@ -31,12 +31,13 @@ class MenuScene extends Phaser.Scene {
 class GuildHallScene extends Phaser.Scene {
     constructor() { super('GuildHallScene'); }
     preload() {
-        this.load.image('knight_portrait', 'https://ibb.co/yBNPkSt2');
-        this.load.image('knight_sprite', 'https://ibb.co/nNMSgTqb');
-        this.load.image('emblem', 'https://ibb.co/rKhVk4dd');
+        this.load.image('knight_portrait', 'https://i.ibb.co/dJfMpgFZ/9ku-P4.jpg');
+        this.load.image('knight_sprite', 'https://i.ibb.co/pBjp0g6x/Qa-Cc-M.jpg');
+        this.load.image('emblem', 'https://i.ibb.co/NgqMxZTT/CUit-Q.jpg');
     }
     create() {
         this.cameras.main.setBackgroundColor('#2c1f14');
+        
         this.add.text(640, 60, 'GUILD HALL', { fontSize: '42px', fill: '#ffd700' }).setOrigin(0.5);
         this.add.image(200, 120, 'emblem').setScale(0.7);
         this.add.image(300, 380, 'knight_portrait').setScale(0.65);
@@ -58,8 +59,4 @@ class GuildHallScene extends Phaser.Scene {
         if (this.cursors.down.isDown || this.keys.S.isDown) this.knight.y += speed;
         
         this.knight.x = Phaser.Math.Clamp(this.knight.x, 100, 1180);
-        this.knight.y = Phaser.Math.Clamp(this.knight.y, 180, 620);
-    }
-}
-
-const game = new Phaser.Game(config);
+        this.knight.y = Phaser.Math.Clamp(this.knight.y, 180, 620
